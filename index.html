@@ -124,10 +124,10 @@
 <body>
     <div class="container" id="container">
         <div class="piece1" id="piece1">
-            <div class="a1"></div>
-            <div class="b1"></div>
-            <div class="c1"></div>
-            <div class="d1"></div>
+            <div class="a1" ></div>
+            <div class="b1" ></div>
+            <div class="c1" ></div>
+            <div class="d1" ></div>
         </div>
     
     
@@ -151,53 +151,54 @@
                 <div class="b5"></div>
                 <div class="c5"></div>
                 <div class="d5"></div>
-        </div>
+            </div>
     </div>
     <script>
         const container = document.getElementById('container')
         const piece1 = document.getElementById('piece1')
         const piece2 = document.getElementById('piece2')
-        const piece3 = document.getElementById('piece3')
+        const circulo = document.getElementById('piece3')
         const piece4 = document.getElementById('piece4')
         const piece5 = document.getElementById('piece5')
-        /* function agregarAnimacion(objeto,name, time, laps, direction) {
-
-            objeto.style.animationName = $'name'
-            objeto.style.animationDuration = $time
-            objeto.style.animationIterationCount = $laps
-            objeto.style.animationDirection = $'direction'
-
-        } */
         container.addEventListener('animationend', (e)=> {
+        function addMove (obj){
+            obj.animate([
+                    //from
+                {
+                    transform: 'scale(1)'
+                },
+                    //to
+                {
+                    transform: 'scale(1.5)'
+                }
+            ],{
+                    //al llenar las propiedades hay que tener presente que los campos que se llenan con numeros
+                    //solo debe ir numero. no escribirlos como strings
+                duration: 1000,
+                direction: 'alternate',
+                iterations: Infinity
+    
+            })
+        }
             if(e.animationName === 'rotacion'){
-
-                piece1.style.animationName = 'translate'
-                piece1.style.animationDuration = '1s'
-                piece1.style.animationIterationCount = '4'
-                piece1.style.animationDirection = 'alternate'
-                
-                piece2.style.animationName = 'translate'
-                piece2.style.animationDuration = '1s'
-                piece2.style.animationIterationCount = '4'
-                piece2.style.animationDirection = 'alternate'
-                
-                piece4.style.animationName = 'translate'
-                piece4.style.animationDuration = '1s'
-                piece4.style.animationIterationCount = '4'
-                piece4.style.animationDirection = 'alternate'
-                
-                piece5.style.animationName = 'translate'
-                piece5.style.animationDuration = '1s'
-                piece5.style.animationIterationCount = '4'
-                piece5.style.animationDirection = 'alternate'
-                
-                piece3.style.animationName = 'circulo'
-                piece3.style.animationDuration = '1s'
-                piece3.style.animationIterationCount = '4'
-                piece3.style.animationDirection = 'alternate'
-                /* agregarAnimacion('piece1' ,'translate', '1s' , '4' , 'alternate') */
-                
-
+                addMove(piece1)
+                addMove(piece2)
+                addMove(piece4)
+                addMove(piece5)
+                circulo.animate([
+                    {
+                        opacity: 1,
+                        transform: 'scale(1)'
+                    },
+                    {
+                        transform: 'scale(0.6)',
+                        opacity:0.6
+                    }
+                ],{
+                    duration: 1000,
+                    iterations: Infinity,
+                    direction: 'alternate'
+                })
             }
         })
     </script>
