@@ -12,10 +12,10 @@
     }
     .container {
         height: 95vh;
-        width: 750px;
+        width: 600px;
         display: grid;
-        grid-template-columns: repeat(3, 250px);
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 200px);
+        grid-template-rows: repeat(3, 200px);
         grid-template-areas: "piece1 . piece2"
                              ". piece3 ."
                              "piece4 . piece5";
@@ -33,10 +33,31 @@
     }
     @keyframes rotacion {
         from {
+            transform-origin: 50%;
             transform: rotate(0deg);
         }
         to {
+            transform-origin: 50%;
             transform: rotate(405deg);
+        }
+    }
+    @keyframes translate {
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(1.5);
+        }
+    }
+    @keyframes circulo {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+        to {
+            opacity: 0;
+            transform: scale(0.6);
+
         }
     }
     .piece1,
@@ -90,6 +111,7 @@
     }
     .c2, .b4, .a5 {
         background: white;
+        opacity:0;
     }
     .circulo {
         height: 100%;
@@ -101,7 +123,7 @@
 </head>
 <body>
     <div class="container" id="container">
-        <div class="piece1">
+        <div class="piece1" id="piece1">
             <div class="a1"></div>
             <div class="b1"></div>
             <div class="c1"></div>
@@ -109,22 +131,22 @@
         </div>
     
     
-        <div class="piece2">
+        <div class="piece2" id="piece2">
             <div class="a2"></div>
             <div class="b2"></div>
             <div class="c2"></div>
             <div class="d2"></div>
         </div>
-        <div class="piece3">
+        <div class="piece3" id="piece3">
                 <div class="circulo"></div>
             </div>
-        <div class="piece4">
+        <div class="piece4" id="piece4">
                  <div class="a4"></div>
                  <div class="b4"></div>
                  <div class="c4"></div>
                  <div class="d4"></div>
         </div>
-        <div class="piece5">
+        <div class="piece5" id="piece5">
                 <div class="a5"></div>
                 <div class="b5"></div>
                 <div class="c5"></div>
@@ -133,8 +155,50 @@
     </div>
     <script>
         const container = document.getElementById('container')
+        const piece1 = document.getElementById('piece1')
+        const piece2 = document.getElementById('piece2')
+        const piece3 = document.getElementById('piece3')
+        const piece4 = document.getElementById('piece4')
+        const piece5 = document.getElementById('piece5')
+        /* function agregarAnimacion(objeto,name, time, laps, direction) {
+
+            objeto.style.animationName = $'name'
+            objeto.style.animationDuration = $time
+            objeto.style.animationIterationCount = $laps
+            objeto.style.animationDirection = $'direction'
+
+        } */
         container.addEventListener('animationend', (e)=> {
-            console.log(e)
+            if(e.animationName === 'rotacion'){
+
+                piece1.style.animationName = 'translate'
+                piece1.style.animationDuration = '1s'
+                piece1.style.animationIterationCount = '4'
+                piece1.style.animationDirection = 'alternate'
+                
+                piece2.style.animationName = 'translate'
+                piece2.style.animationDuration = '1s'
+                piece2.style.animationIterationCount = '4'
+                piece2.style.animationDirection = 'alternate'
+                
+                piece4.style.animationName = 'translate'
+                piece4.style.animationDuration = '1s'
+                piece4.style.animationIterationCount = '4'
+                piece4.style.animationDirection = 'alternate'
+                
+                piece5.style.animationName = 'translate'
+                piece5.style.animationDuration = '1s'
+                piece5.style.animationIterationCount = '4'
+                piece5.style.animationDirection = 'alternate'
+                
+                piece3.style.animationName = 'circulo'
+                piece3.style.animationDuration = '1s'
+                piece3.style.animationIterationCount = '4'
+                piece3.style.animationDirection = 'alternate'
+                /* agregarAnimacion('piece1' ,'translate', '1s' , '4' , 'alternate') */
+                
+
+            }
         })
     </script>
 </body>
